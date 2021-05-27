@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useRef, useState} from "react";
+import * as esbuild from "esbuild-wasm";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const ref = useRef<any>()
+
+    const [input, setInput] = useState('')
+    const [code, setCode] = useState('')
+
+    const onClick = async () => {
+        if (!ref.current) return
+
+        const result = await ref.current.transform(input, {
+            loader: 'jsx',
+            target: 'es2015'
+        })
+        setCode(result.code)
+    }
+
+    const startService = async () => {
+        ref.current = await esbuild.startService({
+            worker: true,
+            wasmURL: '/esbuild.wasm'
+        })
+
+
+    }
+    useEffect(() => {
+        startService()
+    }, [])
+    return (
+        <div>
+            <textarea value={input} onChange={event => setInput(event.target.value)}/>
+            <div>
+                <button onClick={onClick}>Submit</button>
+            </div>
+            <pre>{code}</pre>
+        </div>
+    )
 }
-
-export default App;
+export default App
