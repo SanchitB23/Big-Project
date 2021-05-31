@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import './preview.css'
 
 interface PreviewProps {
     code: string
@@ -8,6 +9,7 @@ const html = `
         <html lang="en">
             <head>
                 <title>Test Sub HTML</title>
+                <style>html {background-color: white}</style>
             </head>
             <body>
                 <div id="root"></div>
@@ -31,12 +33,21 @@ const Preview: React.FC<PreviewProps> = ({code}) => {
 
     useEffect(() => {
         iframe.current.srcdoc = html;
-        iframe.current.contentWindow.postMessage(code, "*")
-
+        setTimeout(() => {
+            iframe.current.contentWindow.postMessage(code, "*")
+        }, 100)
     }, [code])
 
     return (
-        <iframe ref={iframe} srcDoc={html} title="Preview" sandbox="allow-scripts"/>
+        <div className="preview-wrapper">
+            <iframe
+                ref={iframe}
+                srcDoc={html}
+                title="Preview"
+                sandbox="allow-scripts"
+                style={{backgroundColor: 'white'}}
+            />
+        </div>
     );
 };
 

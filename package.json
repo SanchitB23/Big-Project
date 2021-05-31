@@ -18,7 +18,8 @@
     "prettier": "^2.3.0",
     "bulmaswatch": "^0.8.1",
     "monaco-jsx-highlighter": "0.0.15",
-    "jscodeshift": "0.11.0"
+    "jscodeshift": "0.11.0",
+    "react-resizable": "1.11.0"
   },
   "devDependencies": {
     "monaco-editor": "^0.24.0",
@@ -27,7 +28,8 @@
     "@types/react": "^17.0.8",
     "@types/react-dom": "^17.0.5",
     "@types/jscodeshift": "0.7.2",
-    "@types/prettier": "^2.2.3"
+    "@types/prettier": "^2.2.3",
+    "@types/react-resizable": "1.7.2"
   },
   "scripts": {
     "start": "react-scripts start",

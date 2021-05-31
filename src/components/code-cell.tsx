@@ -1,28 +1,39 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import 'bulmaswatch/superhero/bulmaswatch.min.css'
 import bundler from "../bundler";
 import {CodeEditor} from "./code-editor";
 import Preview from "./preview";
+import Resizable from "./resizable";
 
 const CodeCell = () => {
     const [input, setInput] = useState('')
     const [code, setCode] = useState('')
 
-    const onClick = async () => {
-        const output = await bundler(input)
-        setCode(output)
-    }
+    useEffect(() => {
+        let timer: NodeJS.Timer
+
+        timer = setTimeout(async () => {
+            const output = await bundler(input)
+            setCode(output)
+        }, 1000)
+
+        return () => clearTimeout(timer)
+
+    }, [input])
 
     return (
-        <div>
-            <CodeEditor initialValue="// Type Your Code Here" onChange={(value) => {
-                setInput(value)
-            }}/>
-            <div>
-                <button onClick={onClick}>Submit</button>
+        <Resizable direction="vertical">
+            <div style={{height: '100%', display: 'flex', flexDirection: 'row'}}>
+                <Resizable
+                    direction="horizontal"
+                >
+                    <CodeEditor initialValue="// Type Your JS Code Here" onChange={(value) => {
+                        setInput(value)
+                    }}/>
+                </Resizable>
+                <Preview code={code}/>
             </div>
-            <Preview code={code}/>
-        </div>
+        </Resizable>
     )
 }
 
