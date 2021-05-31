@@ -3,7 +3,9 @@ import {useEffect, useRef, useState} from "react";
 import {unpkgPathPlugin} from "./plugins/unpkg-path-plugin";
 import * as esbuild from "esbuild-wasm";
 import {fetchPlugin} from "./plugins/fetch-plugin";
+import {CodeEditor} from "./components/code-editor";
 
+import 'bulmaswatch/superhero/bulmaswatch.min.css'
 
 const App = () => {
     const ref = useRef<any>()
@@ -77,6 +79,9 @@ const App = () => {
 
     return (
         <div>
+            <CodeEditor initialValue="// Type Your Code Here" onChange={(value) => {
+                setInput(value)
+            }}/>
             <textarea value={input} onChange={event => {
                 setInput(event.target.value)
             }}/>
