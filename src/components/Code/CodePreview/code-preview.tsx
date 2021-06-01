@@ -40,7 +40,6 @@ const CodePreview: React.FC<PreviewProps> = ({code, error}) => {
         }, 100)
     }, [code])
 
-    console.log(error)
     return (
         <div className="preview-wrapper">
             <iframe

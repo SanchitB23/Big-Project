@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import 'bulmaswatch/superhero/bulmaswatch.min.css'
-import bundler from "../bundler";
-import {CodeEditor} from "./code-editor";
-import CodePreview from "./code-preview";
-import Resizable from "./resizable";
+import bundler from "../../functions/bundler";
+import {CodeEditor} from "./CodeEditor/code-editor";
+import CodePreview from "./CodePreview/code-preview";
+import Resizable from "../../container/resizable";
 
-const CodeCell = () => {
+const Code = () => {
     const [input, setInput] = useState('')
     const [code, setCode] = useState('')
     const [err, setErr] = useState('')
@@ -28,7 +28,7 @@ const CodeCell = () => {
                 <Resizable
                     direction="horizontal"
                 >
-                    <CodeEditor initialValue="// Type Your JS Code Here" onChange={(value) => {
+                    <CodeEditor initialValue="// Type Your JS Index Here" onChange={(value) => {
                         setInput(value)
                     }}/>
                 </Resizable>
@@ -38,4 +38,4 @@ const CodeCell = () => {
     )
 }
 
-export default CodeCell
+export default Code
