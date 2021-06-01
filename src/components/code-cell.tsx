@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import 'bulmaswatch/superhero/bulmaswatch.min.css'
 import bundler from "../bundler";
 import {CodeEditor} from "./code-editor";
-import Preview from "./preview";
+import CodePreview from "./code-preview";
 import Resizable from "./resizable";
 
 const CodeCell = () => {
@@ -32,7 +32,7 @@ const CodeCell = () => {
                         setInput(value)
                     }}/>
                 </Resizable>
-                <Preview code={code} error={err}/>
+                <CodePreview code={code} error={err}/>
             </div>
         </Resizable>
     )
