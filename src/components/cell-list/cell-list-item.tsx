@@ -1,7 +1,7 @@
 import React from 'react';
 import {Cell} from "../../Interfaces/cell";
 import {CellType} from "../../constants/cell-types";
-import Code from "../../views/Code";
+import CodeCell from "../../views/Code";
 import TextToMdEditor from "../../views/Markdown";
 import ActionBar from "../action-bar";
 import './cell-list-item.css'
@@ -16,7 +16,7 @@ const CellListItem: React.FC<CellListItemProps> = ({cell}) => {
         <div className="action-bar-wrapper">
             <ActionBar id={cell.id}/>
         </div>
-        <Code cell={cell}/>
+        <CodeCell cell={cell}/>
     </>
     else child = <>
         <TextToMdEditor cell={cell}/>
