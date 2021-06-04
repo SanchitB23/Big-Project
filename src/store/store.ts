@@ -1,13 +1,29 @@
 import {applyMiddleware, createStore} from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
+import {ActionType} from "../constants/action-type";
+import {CellType} from "../constants/cell-types";
+import {composeWithDevTools} from "redux-devtools-extension";
 
-export const store = createStore(reducers, {}, applyMiddleware(thunk))
+export const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(thunk)))
 
-/*
-Manual Redux Testing
+// Manual Redux Testing
 store.dispatch({
-    type: ActionType.INSERT_CELL_BEFORE,
+    type: ActionType.INSERT_CELL_AFTER,
+    payload: {
+        id: null,
+        type: CellType.CODE
+    }
+})
+store.dispatch({
+    type: ActionType.INSERT_CELL_AFTER,
+    payload: {
+        id: null,
+        type: CellType.MARKDOWN
+    }
+})
+store.dispatch({
+    type: ActionType.INSERT_CELL_AFTER,
     payload: {
         id: null,
         type: CellType.CODE
@@ -15,4 +31,3 @@ store.dispatch({
 })
 
 console.log(store.getState())
-*/
