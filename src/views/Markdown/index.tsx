@@ -2,7 +2,8 @@ import './md-editor.css'
 import MDEditor from '@uiw/react-md-editor';
 import React, {useEffect, useRef, useState} from 'react';
 import {Cell} from "../../Interfaces/cell";
-import {useActions} from "../../hooks/useActions";
+import {useActions} from "../../hooks";
+import {Constants} from "../../constants";
 
 interface TextToMdEditorProps {
     cell: Cell
@@ -40,7 +41,7 @@ const TextToMdEditor: React.FC<TextToMdEditorProps> = ({cell}) => {
             setIsEditing(true)
         }}>
             <div className="card-content">
-                <MDEditor.Markdown source={cell.content || "Click to Start Markdown Editing"}/>
+                <MDEditor.Markdown source={cell.content || Constants.MARKDOWN_INITIAL_TEXT}/>
             </div>
         </div>
     );
