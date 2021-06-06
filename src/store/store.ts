@@ -1,26 +1,8 @@
 import {applyMiddleware, createStore} from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
-import {ActionType} from "../constants/action-type";
-import {CellType} from "../constants/cell-types";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {persistMiddleware} from "./middlewares/persist-middleware";
 
-export const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(thunk)))
+export const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(persistMiddleware, thunk)))
 
-// Manual Redux Testing Default Data for WebApp
-store.dispatch({
-    type: ActionType.INSERT_CELL_AFTER,
-    payload: {
-        id: null,
-        type: CellType.CODE
-    }
-})
-store.dispatch({
-    type: ActionType.INSERT_CELL_AFTER,
-    payload: {
-        id: null,
-        type: CellType.MARKDOWN
-    }
-})
-
-console.log(store.getState())
