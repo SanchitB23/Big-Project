@@ -7,7 +7,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 export const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(thunk)))
 
-// Manual Redux Testing
+// Manual Redux Testing Default Data for WebApp
 store.dispatch({
     type: ActionType.INSERT_CELL_AFTER,
     payload: {
@@ -20,13 +20,6 @@ store.dispatch({
     payload: {
         id: null,
         type: CellType.MARKDOWN
-    }
-})
-store.dispatch({
-    type: ActionType.INSERT_CELL_AFTER,
-    payload: {
-        id: null,
-        type: CellType.CODE
     }
 })
 
