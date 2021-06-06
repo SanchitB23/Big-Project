@@ -1,18 +1,22 @@
 {
-  "name": "client",
+  "name": "@js-md-ide/client",
   "version": "0.1.0",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "author": {
     "name": "SanchitB23",
     "url": "https://github.com/SanchitB23"
   },
+  "files": [
+    "build"
+  ],
   "repository": "https://github.com/SanchitB23/js-md-IDE-client",
-  "homepage": "http://sanchitb23.github.io/js-md-IDE-client",
   "keywords": [
     "jbook",
     "jsIDE"
   ],
-  "dependencies": {
+  "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@monaco-editor/react": "3.7.5",
     "@uiw/react-md-editor": "2.1.1",
@@ -31,9 +35,7 @@
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.3.2",
-    "web-vitals": "^1.1.2"
-  },
-  "devDependencies": {
+    "web-vitals": "^1.1.2",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -57,7 +59,8 @@
     "eject": "react-scripts eject",
     "serve": "node src/api/local.js",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "eslintConfig": {
     "extends": [
